@@ -14,33 +14,37 @@ body {
 }
 @-webkit-keyframes flash {
     0%, 50%, 100% {
-    opacity: 1;
+        opacity: 1;
+    }
+    25%, 75% {
+        opacity: 0;
+    }
 }
-25%, 75% {
-    opacity: 0;
-}
-}@-moz-keyframes flash {
+@-moz-keyframes flash {
     0%, 50%, 100% {
-    opacity: 1;
+        opacity: 1;
+    }
+    25%, 75% {
+        opacity: 0;
+    }
 }
-25%, 75% {
-    opacity: 0;
-}
-}@-o-keyframes flash {
+@-o-keyframes flash {
     0%, 50%, 100% {
-    opacity: 1;
+        opacity: 1;
+    }
+    25%, 75% {
+        opacity: 0;
+    }
 }
-25%, 75% {
-    opacity: 0;
-}
-}@keyframes flash {
+@keyframes flash {
     0%, 50%, 100% {
-    opacity: 1;
+        opacity: 1;
+    }
+    25%, 75% {
+        opacity: 0;
+    }
 }
-25%, 75% {
-    opacity: 0;
-}
-}.flash {
+.flash {
     -webkit-animation-name: flash;
     -moz-animation-name: flash;
     -o-animation-name: flash;
@@ -48,12 +52,13 @@ body {
 }
 @-webkit-keyframes flipInX {
     0% {
-    -webkit-transform: rotateX(0deg);
+        -webkit-transform: rotateX(0deg);
+    }
+    100% {
+        -webkit-transform: rotateX(-180deg);
+    }
 }
-100% {
-    -webkit-transform: rotateX(-180deg);
-}
-}@-moz-keyframes flipInX {
+@-moz-keyframes flipInX {
     0% {
     -moz-transform: rotateX(0deg);
 }
@@ -3189,4 +3194,5 @@ footer {
     padding-top: 12px;
     position: relative;
     display: none;
+}
 }
