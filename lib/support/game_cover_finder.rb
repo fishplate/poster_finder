@@ -2,6 +2,16 @@ require 'httparty'
 require 'open-uri'
 require 'json'
 
+# Class that calls on thegamesdb API with a search query and returns
+# cover and fan art for any games that match the query.
+# 
+# Example of usage:
+# # The following line will search for "zelda" and return images for the
+# # first five games that are returned from the search.
+# GameCoverFinder.new.display_images("zelda", 5)
+# 
+# 
+
 class GameCoverFinder
 
   GAME_LIST_URL = "http://thegamesdb.net/api/GetGamesList.php?name="
