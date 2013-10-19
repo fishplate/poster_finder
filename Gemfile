@@ -35,6 +35,8 @@ gem 'jbuilder', '~> 1.2'
 # adding gems for getting poster info
 gem 'httparty'
 
+gem 'capistrano', '~> 2.15'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -44,14 +46,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'brakeman'
 end
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
 
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+group :production do
+  gem 'mysql2' # If using mysql in development, this can be outside the production group.
+  gem 'therubyracer'
+end

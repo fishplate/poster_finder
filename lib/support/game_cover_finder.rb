@@ -28,7 +28,8 @@ class GameCoverFinder
       title = data['Game']['GameTitle']
       boxart = get_boxart(data['Game']['Images']['boxart'], base_img_url) || []
       fanart = get_fanart(data['Game']['Images']['fanart'], base_img_url) || []
-      game_images << {title:title, images:boxart+fanart}
+      backdrop = fanart.empty? ? nil : fanart.sample
+      game_images << {title:title, images:boxart+fanart, backdrop:backdrop}
     end
 
     return game_images
