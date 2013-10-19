@@ -1,0 +1,161 @@
+.vegas-loading {
+	top:auto;
+	bottom:20px;
+}
+.vegas-overlay {
+	background:transparent url("/assets/img_background_full_hd.jpg");
+}
+ul {
+	float:right;
+}
+li {
+	float:left;
+	list-style:none;
+	margin:4px !important;
+	position:relative;
+}
+	li a {
+		outline:none;
+	}
+p {
+	clear:both;	
+}
+a {
+	color:#CF0;
+	text-decoration:none;	
+}
+	a img.result {
+		-moz-box-shadow:0 5px 5px #000; -webkit-box-shadow:0 5px 5px #000; box-shadow:0 5px 2px #000;
+		border:1px solid #FFF;
+		width:150px;
+		height:100px;
+	}
+	a:hover img {
+		border:1px solid #CF0;	
+	}
+	a:active img {
+		border:1px dotted #CF0;
+	}
+#sponsors {
+	top:40px;
+}
+#containerResults {
+	width:700px;
+}
+#pause {
+	background:#000;
+	cursor:pointer;
+	display:none;
+	font-size:40px;
+	left:0;
+	line-height:90px;
+	height:100%;
+	position:absolute;
+	text-align:center;
+	top:0;
+	width:100%;
+	margin:0;
+	padding:0;
+}
+
+.ie body {
+	filter: dropshadow(color=#000000, offx=0, offy=1);	
+}
+
+.ie h1 {
+	filter: dropshadow(color=#000000, offx=0, offy=3);
+	padding-bottom:12px;	
+}
+
+.ie h2 {
+	filter: dropshadow(color=#000000, offx=0, offy=3);
+}
+
+.ie h3 {
+	filter: dropshadow(color=#000000, offx=0, offy=3);
+}
+h4 {
+	margin-bottom:5px;	
+}
+p, pre {
+	margin:0 0 10px 0; 
+}
+code {
+	text-transform:uppercase !important;
+	color:#EEE;	
+	border-bottom:1px dotted #666;
+}
+small {
+	background:url(../images/alpha.png);
+	background:rgba(0, 0, 0, 0.8) url();	
+	border:1px solid #111;
+	font-size:15px;
+	padding:0 5px;
+}
+a {
+	color:#CF0;
+	text-decoration:none;	
+}
+a:hover {
+	color:#BBB;	
+}
+ul {
+	margin:0 0 10px 0;
+	overflow:hidden;
+	padding:0;
+}
+	ul li {
+		list-style:none;
+		margin:4px 0;
+	}
+	ul li span {
+		font-size:30px;
+		border:1px solid #111;
+		background:url(../images/alpha.png);
+		background:rgba(0, 0, 0, 0.8) url();
+		padding:0 15px;
+	}
+	ul li span em {
+		font-style:normal;
+	}
+	ul ul {
+		display:none;
+		float:right;
+		margin:0 3px 0 3px;
+		text-align:left;
+	}
+		ul ul span {
+			font-size:20px;
+		}
+		ul ul li {
+			margin:0 0 6px 0;
+		}
+.download strong {
+	font-weight: normal;
+}
+#containerResults {
+	bottom:0;
+	right:0;
+	position:absolute;
+	padding:0 20px 20px 0;
+	width:800px;
+}
+#menu .current a {
+	color:#FFF;	
+}
+
+#home .vegas-loading {
+	top:45px;	
+}
+
+#overlay {
+	display:none;
+	background:url(../images/alpha.png);
+	background:rgba(0, 0, 0, 0.8) url();
+	position:fixed;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	z-index:999;
+}

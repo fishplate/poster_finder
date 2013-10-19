@@ -31,7 +31,7 @@ class ResultsController < ApplicationController
   def search_game(query)
     if !query.empty?
       @games = true
-      @results = game_client.display_images(query, 50)
+      @results = game_client.display_images(query, 5)
     else
       redirect_to root_path
     end
