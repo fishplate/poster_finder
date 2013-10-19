@@ -11,7 +11,7 @@
     <% end %>
   <% end %>
 <% elsif @music %>
-  <%= @results.each do |song| %>
+  <% @results.each do |song| %>
 	<h2><%= song[:artist] %></h2>
 	<h3><%= song[:collection] %></h3>
     <img src="<%= song[:image] %>" style="width:200px;height:200px;" />
