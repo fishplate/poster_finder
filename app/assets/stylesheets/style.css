@@ -2571,13 +2571,13 @@ header {
 #wrapper #container {
     max-width: 960px;
     width: 100%;
-    margin: 0 auto;
+    margin: 10% auto;
 }
 #wrapper #container .title {
     margin-top: 130px;
     text-align: center;
     color: #c8c8c8;
-    font-size: 5em;
+    font-size: 4.2em;
     text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.75);
     text-transform: uppercase;
     -webkit-animation-delay: 1.1s;
@@ -2585,7 +2585,7 @@ header {
     -ms-animation-delay: 1.1s;
     -o-animation-delay: 1.1s;
     animation-delay: 1.1s;
-    font-family: 'GearedSlab', 'Roboto Serif',  Times New Roman,  serif;
+    font-family: 'Roboto Slab';
     font-weight: normal;
     font-style: normal;
 }
@@ -2910,9 +2910,9 @@ header {
     font-style: normal;
 }
 #wrapper #container .subscribeAndSocial .socialNetwork {
-    float: right;
+ 
     margin-top: 105px;
-    width: 312px;
+    width: 100%;
 }
 #wrapper #container .subscribeAndSocial .socialNetwork .title {
     margin-top: 0px;
@@ -3027,15 +3027,15 @@ footer span, .footerMobile span {
     #wrapper #container .title {
     margin-top: 3%}
 #wrapper #container .subtitle {
-    margin-top: -1.4375em;
+    margin-top: 0.25em;
 }
 #wrapper #container .spanSubtitle {
-    margin-top: 35px;
+    margin-top: 1px;
 }
 #wrapper #container .subscribeAndSocial .newsletter {
-    margin-top: 7%}
+    margin-top: 2%}
 #wrapper #container .subscribeAndSocial .socialNetwork {
-    margin-top: 7%}
+    margin-top: 4%}
 }@media screen and (max-width: 1024px) {
     #wrapper #container .title {
     margin-top: 28px;
@@ -3189,5 +3189,4 @@ footer {
     padding-top: 12px;
     position: relative;
     display: none;
-}
-}
+}}
