@@ -18,10 +18,20 @@ class ResultsController < ApplicationController
 
   def search_movie(query)
     if !query.empty?
+      @movies = true
       conf = movie_client.movie_image_config
       results = movie_client.search_movie(query)
       @results = removed_nil_images(results)
       @image = conf[:base_url] + conf[:size]
+    else
+      redirect_to root_path
+    end
+  end
+
+  def search_game(query)
+    if !query.empty?
+      @games = true
+      @results = game_client.display_images(query, 5)
     else
       redirect_to root_path
     end

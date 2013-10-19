@@ -1,2 +1,11 @@
-<%=@results %>
-<%=@image %>
+<% if @movies %>
+	<%= @results %>
+	<%= @image %>
+<% elsif @games %>
+  <% @results.each do |game| %>
+    <h2><%= game[:title] %></h2>
+    <% game[:images].each do |image| %>
+      <img src="<%= image %>" style="width:200px;height:200px;" />
+    <% end %>
+  <% end %>
+<% end %>

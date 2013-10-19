@@ -18,6 +18,7 @@ class GameCoverFinder
   GAME_URL = "http://thegamesdb.net/api/GetGame.php?id="
 
   def display_images(query, limit=50)
+    query = URI::encode(query)
     game_images = []
     game_ids = get_game_ids(query, limit)
     game_ids.each do |game_id|
@@ -30,7 +31,7 @@ class GameCoverFinder
       game_images << {title:title, images:boxart+fanart}
     end
 
-    return game_images.to_json
+    return game_images
   end
 
   private

@@ -18,4 +18,8 @@ class ApplicationController < ActionController::Base
   def empty_string?(query_string)
     query_string.nil? || query_string.to_s.empty?
   end
+
+  def game_client
+    @game_client ||= GameCoverFinder.new
+  end
 end
