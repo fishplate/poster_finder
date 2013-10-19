@@ -8,11 +8,18 @@
                
                 <div class="subscribeAndSocial animated fadeInDown">
                     <div class="newsletter">
-                        <form id="form">
-                            <input type="hidden" name="sendEmail" value=""; />
-                            <input type="text" name="email" placeholder="Enter Movie, Music or Game Name Here"/>
-                            <input type="submit" value="Submit" />
-                        </form>
+                        <%= form_tag results_path, id: :form, method: :get do %>
+                         <%= text_field_tag 'search', nil, :placeholder => 'Enter Film Name or Album Name Here.....'%>
+                           <div class="labelTag">
+                            <%= label_tag "Movie" %>
+                            <%= radio_button_tag 'submit_type', 'movie', true %>
+                            <%= label_tag "Game" %>
+                            <%= radio_button_tag 'submit_type', 'game' %>
+                            <%= label_tag "Music" %>
+                            <%= radio_button_tag 'submit_type', 'music' %>
+                           </div>
+                           <%= submit_tag "search", :id => 'submitForm' %>
+                         <% end %>
 
 
                         <div id="notifications"></div>
@@ -37,4 +44,3 @@
         <footer class="animated fadeInDown">
             <div class="copyright"></div>
         </footer>
-

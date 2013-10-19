@@ -65,13 +65,16 @@ private
 
   def foramtted_(results)
     return unless results
-    results.map do |r|
-      {
-        title: r['title'],
-        image: r['poster_path'],
-        backdrop: r['backdrop_path'],
-      }
+    formatted = results.map do |r|
+      unless r.nil?
+        {
+          title: r['title'],
+          image: r['poster_path'],
+          backdrop: r['backdrop_path']
+        }
+      end
     end
+    formatted.delete_if {|x| x.nil?}
   end
 
 end

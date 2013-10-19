@@ -1,0 +1,19 @@
+<% if @movies %>
+	<% @results.each do |movie| %>
+	  <h2><%= movie[:title] %></h2>
+	  <img src="<%= @image + movie[:image] %>" style="width:200px;height:200px;" />
+	<% end %>
+<% elsif @games %>
+  <% @results.each do |game| %>
+    <h2><%= game[:title] %></h2>
+    <% game[:images].each do |image| %>
+      <img src="<%= image %>" style="width:200px;height:200px;" />
+    <% end %>
+  <% end %>
+<% elsif @music %>
+  <% @results.each do |song| %>
+	<h2><%= song[:artist] %></h2>
+	<h3><%= song[:collection] %></h3>
+    <img src="<%= song[:image] %>" style="width:200px;height:200px;" />
+  <% end %>
+<% end %>

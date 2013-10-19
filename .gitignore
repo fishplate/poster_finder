@@ -16,3 +16,4 @@
 /tmp
 
 /config/initializers/secret_token_prod.rb
+/config/config_prod.yml
