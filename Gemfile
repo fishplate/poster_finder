@@ -10,7 +10,6 @@ gem 'sqlite3'
 gem 'execjs'
 gem 'therubyracer'
 
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -45,4 +44,8 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'brakeman'
+end
+
+group :production do
+  gem 'mysql2' # If using mysql in development, this can be outside the production group.
 end
