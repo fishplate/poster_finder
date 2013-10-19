@@ -22,4 +22,8 @@ class ApplicationController < ActionController::Base
   def game_client
     @game_client ||= GameCoverFinder.new
   end
+
+  def music_client
+    @music_client ||= MusicCoverFinder.new
+  end
 end

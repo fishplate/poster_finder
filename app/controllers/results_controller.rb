@@ -37,12 +37,24 @@ class ResultsController < ApplicationController
     end
   end
 
+  def search_music(query)
+    if !query.empty?
+      @music = true
+      @results = music_client.music_search(query)
+    else
+      redirect_to root_path
+    end
+    
+  end
+
   def match_query(query_string, search_string)
     case query_string
     when 'movie'
       search_movie(search_string)
     when 'game'
       search_game(search_string)
+    when 'music'
+      search_music(search_string)
     else
       redirect_to root_path
     end
