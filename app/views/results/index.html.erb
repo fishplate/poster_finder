@@ -1,23 +1,117 @@
-<% if @movies %>
-	<% @results.each do |movie| %>
-	  <h2><%= movie[:title] %></h2>
-	  <img src="<%= @image + movie[:image] %>" style="width:200px;height:200px;" />
-	<% end %>
+<div id="containerResults">
+   <ul id="menu">
+  <% if @movies %>
+  <% @results.each do |movie| %>
+    <!--<h2><%= movie[:title] %></h2>-->
+    <li><img class="result" src="<%= @image + movie[:image] %>" style="width:150px;height:100px;" /></li>
+  <% end %>
 <% elsif @games %>
   <% @results.each do |game| %>
-    <h2><%= game[:title] %></h2>
-    <% if !game[:backdrop].nil? %>
-	    <p><strong>BACKDROP -> <img style="width:300px;height:300px;" src="<%= game[:backdrop] %>" /></strong></p>
-	<% end %>
-	<p><strong>IMAGES:</strong></p>
-    <% game[:images].each do |image| %>
-      <img src="<%= image %>" style="width:200px;height:200px;" />
+    <!--<h2><%= game[:title] %></h2>-->
+    <% game[:images].take(4).each do |image| %>
+      <li>
+        <a href="<%= image %>" data-valign="top">
+         <img class="result" src="<%= image %>" style="width:150px;height:100px;" />
+        </a>
+     </li>
     <% end %>
   <% end %>
 <% elsif @music %>
   <% @results.each do |song| %>
-	<h2><%= song[:artist] %></h2>
-	<h3><%= song[:collection] %></h3>
-    <img src="<%= song[:image] %>" style="width:200px;height:200px;" />
+  <!--<h2><%= song[:artist] %></h2>-->
+  <!--<h3><%= song[:collection] %></h3>-->
+    <li><img class="result" src="<%= song[:image] %>" style="width:150px;height:100px;" /></li>
   <% end %>
+</ul>
 <% end %>
+ 
+</div>
+<script>
+$( function() { 
+    var slideshowRunning = false,
+    backgroundList = [];
+
+    // Build the background list with href of links
+    $( '#menu a' ).each( function() { 
+        backgroundList.push( { 
+            src: $( this ).attr( 'href' ),
+            valign: $( this ).data( 'valign' ),
+      fade: 3000
+         } );
+     } );
+    
+    // Define a slideshow with overlay and pause it
+  $.vegas( backgroundList[3] )
+  ( 'overlay', {
+    opacity: 0.5
+  })
+  ( 'pause' );
+
+    // A short demo
+    $( '#menu a' ).click( function() { 
+  
+        // If the SlideShow link is clicked
+        if ( $( this ).is( '#slideshow' ) ) { 
+    
+            // Start the SlideShow
+            if ( slideshowRunning == false ) { 
+                slideshowRunning = true;
+        
+                $( '#pause' )
+          .show()
+          .css( 'opacity', 0.5 )
+          .html( 'PAUSE' );
+          
+        $.vegas( 'slideshow', { 
+          delay: 5000,
+          backgrounds: backgroundList,
+        })
+        
+            // Pause the SlideShow
+             } else { 
+                slideshowRunning = false;
+        
+                $( '#pause' )
+          .show()
+          .css( 'opacity', 0.5 )
+          .html( 'PLAY' );
+          
+                $.vegas( 'pause' );  
+             }
+            
+        // If a standard Thumbnail is clicked
+         } else { 
+      slideshowRunning = false;
+      
+            $( '#pause' ).hide();
+      $( '#thumbnail' ).attr( 'src', 'images/slideshow.gif' );
+
+      var idx = $( this ).parent( 'li' ).index();
+      $.vegas( 'stop' )( backgroundList[idx] );
+         }
+     
+         return false;
+     } );
+   
+  // Apply a border to the right thumbnail when a background is loaded
+  $( 'body' ).bind( 'vegasload', function( e, bg ) {      
+      var src = $( bg ).attr( 'src' ).replace( 'background', 'thumbnail' );
+    
+    $( '#menu img' )
+      .css( 'border', '1px solid #FFF' ); 
+    $( 'img[src="' + src + '"]' )
+      .css( 'border', '1px solid #CF0' );
+  });
+  
+  // Display the right thumbnail instead of the slideshow animated gif when the slideshow is running
+  $( 'body' ).bind( 'vegaswalk', function( e, bg ) {
+      var src = $( bg ).attr( 'src' ).replace( 'background', 'thumbnail' );
+    
+    $( '#thumbnail' ).attr( 'src', src );
+  });
+ } );
+</script>
+
+
+
+

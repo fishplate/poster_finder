@@ -171,6 +171,7 @@ DEPENDENCIES
   brakeman
   capistrano (~> 2.15)
   coffee-rails (~> 4.0.0)
+  execjs
   httparty
   jbuilder (~> 1.2)
   jquery-rails
