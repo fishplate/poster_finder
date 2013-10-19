@@ -1,7 +1,11 @@
-<div id="form">
-  <form id="searchform" method="get" action="#">
-    <input type="text" id="search" size="120" placeholder="Search for Movies, Music or Games">
-    <input type="submit" value="Search" class="search_btn">
-  </form>
-</div>
+ <%= form_tag results_path, method: :get do %>
+  <%= text_field_tag 'search', nil, :placeholder => 'Enter Film Name or Album Name Here.....'%>
+  <div class="labelTag">
+    <%= label_tag "Movie" %>
+    <%= radio_button_tag 'submit_type', 'movie', true %>
+    <%= label_tag "Game" %>
+    <%= radio_button_tag 'submit_type', 'game' %>
+  </div>
+  <%= submit_tag "search", :id => 'submitForm' %>
+<% end %>
 

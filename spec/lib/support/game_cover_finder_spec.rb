@@ -13,34 +13,29 @@ describe GameCoverFinder do
     it 'should get results for query' do
       game_covers = GameCoverFinder.new
       result = game_covers.display_images("zelda", 1)
-      result = JSON.parse(result)
       result.should be_kind_of(Array)
     end
 
     it "result should be an array of hashes" do
       game_covers = GameCoverFinder.new
       result = game_covers.display_images("zelda", 1)
-      result = JSON.parse(result)
       result.first.should be_kind_of(Hash)
     end
 
     it "result should contain correct data" do
       game_covers = GameCoverFinder.new
       result = game_covers.display_images("zelda", 1) 
-      result = JSON.parse(result)
-      result.first['title'].should eq("The Legend of Zelda")
-      result.first['images'].should be_kind_of(Array)
+      result.first[:title].should eq("The Legend of Zelda")
+      result.first[:images].should be_kind_of(Array)
     end
 
     it "should return 2 results if 2 is entered as an argument" do
       result = GameCoverFinder.new.display_images("zelda", 2)
-      result = JSON.parse(result)
       result.length.should eq(2)
     end
 
     it "should return 3 results if 3 is entered as an argument" do
       result = GameCoverFinder.new.display_images("zelda", 3)
-      result = JSON.parse(result)
       result.length.should eq(3)
     end
   end
@@ -54,9 +49,7 @@ describe GameCoverFinder do
     it 'should return empty array' do
       game_covers = GameCoverFinder.new
       result = game_covers.display_images("blahblahblahblah", 1)
-      result = JSON.parse(result)
       result.should eq([])
     end
   end
-
 end
