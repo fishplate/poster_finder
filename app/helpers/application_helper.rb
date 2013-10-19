@@ -6,6 +6,7 @@ module ApplicationHelper
 
   def games_finder
     @games_finder ||= GameCoverFinder.new
+  end
 
   def movie_api_key
     ENV['MOVIE_API_KEY']
