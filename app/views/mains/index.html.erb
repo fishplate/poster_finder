@@ -7,51 +7,41 @@
     </div>
   <% end %>
   <section id="container">
-      <div class="title animated fadeInDown">Wecome to MMGC Finder</div>
-      <div class="subtitle animated fadeInDown">Search for Movie, Music and Game Covers</div>
-      <div class="spanSubtitle animated fadeInDown">Just Enter a Name & Click Search</div>
-     
-      <div class="subscribeAndSocial animated fadeInDown">
-          <div class="newsletter">
-              <%= form_tag results_path, id: :form, method: :get do %>
-               <%= text_field_tag 'search', nil, :placeholder => 'Enter Film Name or Album Name Here.....'%>
-                 <div class="labelTag">
-                  <%= label_tag "Movie" %>
-                  <%= radio_button_tag 'submit_type', 'movie', true %>
-                  <%= label_tag "Game" %>
-                  <%= radio_button_tag 'submit_type', 'game' %>
-                  <%= label_tag "Music" %>
-                  <%= radio_button_tag 'submit_type', 'music' %>
-                 </div>
-                 <%= submit_tag "search", :id => 'submitForm' %>
-               <% end %>
+    <div class="title animated fadeInDown">Wecome to MMGC Finder</div>
+    <div class="subtitle animated fadeInDown">Search for Movie, Music and Game Covers</div>
+    <div class="spanSubtitle animated fadeInDown">Just Enter a Name & Click Search</div>
 
-
-              <div id="notifications"></div>
-          </div>
-          <div class="socialNetwork">
-              <div class="title"></div>
-              <ul class="social">
-                  <a href="" target="_blank"><%= image_tag ('facebook.png')%></a>
-                  <a href="" target="_blank" ><%= image_tag ('twitter.png')%></a>
-                  <a href="" target="_blank" ><%= image_tag ('g+.png')%></a>
-                  <a href="" target="_blank"><%= image_tag ('dribble.png')%></a>
-                  <a href="" target="_blank" ><%= image_tag ('youtube.png')%></a>
-              </ul>
-          </div>
-      </div>
+    <div class="subscribeAndSocial animated fadeInDown">
+        <div class="newsletter">
+            <%= form_tag results_path, id: :form, method: :get do %>
+             <%= text_field_tag 'search', nil, :placeholder => 'Enter Film Name or Album Name Here.....'%>
+               <div class="labelTag">
+                <%= label_tag "Movie" %>
+                <%= radio_button_tag 'submit_type', 'movie', true %>
+                <%= label_tag "Game" %>
+                <%= radio_button_tag 'submit_type', 'game' %>
+                <%= label_tag "Music" %>
+                <%= radio_button_tag 'submit_type', 'music' %>
+               </div>
+               <%= submit_tag "search", :id => 'submitForm' %>
+             <% end %>
+            <div id="notifications"></div>
+        </div>
   </section>
   <div style="clear:both"></div>
   <div class="footerMobile">
     <div class="copyright"></div>
   </div>
 </div>
+
 <footer class="animated fadeInDown">
     <div class="copyright">
+        <div id="twittag">
         <a href="https://twitter.com/SeanHolden5">@SeanHolden5</a>
         <a href="https://twitter.com/richl14">@richl14</a>
         <a href="https://twitter.com/KDTurner">@KDTurner</a>
-        <a href="https://twitter.com/BradleyAllen512">BradleyAllen512</a>
-        <%= image_tag ('rumble.png')%>
+        <a href="https://twitter.com/BradleyAllen512">@BradleyAllen512</a>
+    </div>
+    <div id="badge"> <%= image_tag ('badge.png')%></div>
     </div>
 </footer>
