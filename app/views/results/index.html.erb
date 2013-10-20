@@ -54,7 +54,7 @@
   function setBackgroundImage(){
     setTimeout(function(){
       var frontImage = $('.roundabout-in-focus img');
-      var url = frontImage.attr('src');
+      var url = frontImage.attr('src').replace('thumb','original');
       $('body').css('background-image', 'url('+url+')');
       $('body').css('background-size', 'cover');
       $('body').css('background-repeat', 'no-repeat');
