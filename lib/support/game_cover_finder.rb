@@ -72,10 +72,10 @@ class GameCoverFinder
   def store_fanart_images(fanart_images, base_img_url)
     image_urls = []
     if fanart_images.kind_of?(Array)
-      fanart_images.each { |fanart| image_urls << fanart['original']['__content__'] }
+      fanart_images.each { |fanart| image_urls << fanart['thumb'] }
       image_urls = image_urls.map { |url| base_img_url+url }
     elsif fanart_images.kind_of?(Hash)
-      image_urls << base_img_url+fanart_images['original']['__content__']
+      image_urls << base_img_url+fanart_images['thumb']
     end
 
     return image_urls
