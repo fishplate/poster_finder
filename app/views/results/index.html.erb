@@ -1,115 +1,193 @@
 <div id="containerResults">
    <ul id="menu">
-  <% if @movies %>
-  <% @results.each do |movie| %>
-    <!--<h2><%= movie[:title] %></h2>-->
-    <li><img class="result" src="<%= @image + movie[:image] %>" style="width:150px;height:100px;" /></li>
-  <% end %>
+<% if @movies %>
+    <div id="type" data-type="movie" style="display:hidden;"></div>
+    <section class="roundaboutcontainer">
+      <h1 id="game-movie-music-title"></h1>
+      <ul class="roundabout-holder">
+        <% @results.each do |movie| %>
+          <% if movie[:backdrop] %>
+            <li><img data-title="<%= movie[:title] %>" data-backdrop="<%= @image + movie[:backdrop]%>" class="roundabout-image" src="<%= @image + movie[:image] %>" /></li>
+          <% else %>
+            <li><img data-title="<%= movie[:title] %>" data-backdrop="<%= @image + movie[:image]%>" class="roundabout-image" src="<%= @image + movie[:image] %>" /></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </section>
+
 <% elsif @games %>
-  <% @results.each do |game| %>
-    <!--<h2><%= game[:title] %></h2>-->
-    <% game[:images].take(4).each do |image| %>
-      <li>
-        <a href="<%= image %>" data-valign="top">
-         <img class="result" src="<%= image %>" style="width:150px;height:100px;" />
-        </a>
-     </li>
-    <% end %>
-  <% end %>
+  <div id="type" data-type="game" style="display:hidden;"></div>
+  <section class="roundaboutcontainer">
+    <h1 id="game-movie-music-title"></h1>
+    <ul class="roundabout-holder">
+      <% @results.each do |game| %>
+        <% game[:images].each do |image| %>
+          <li><img data-title="<%= game[:title] %>" class="roundabout-image" src="<%= image %>"></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </section>
+
 <% elsif @music %>
-  <% @results.each do |song| %>
-  <!--<h2><%= song[:artist] %></h2>-->
-  <!--<h3><%= song[:collection] %></h3>-->
-    <li><img class="result" src="<%= song[:image] %>" style="width:150px;height:100px;" /></li>
-  <% end %>
-</ul>
+  <div id="type" data-type="music" style="display:hidden;"></div>
+  <section class="roundaboutcontainer">
+    <h1 id="game-movie-music-title"></h1>
+    <ul class="roundabout-holder">
+      <% @results.each do |song| %>
+        <li><img data-title='<%= "#{song[:artist]}: #{song[:collection]}" %>' class="roundabout-image" src="<%= song[:image] %>" /></li>
+      <% end %>
+    </ul>
+  </section>
+
+
 <% end %>
  
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    var type = $('#type').data('type');
+    $('.roundabout-holder').roundabout();
+    if(type == 'movie'){
+      setMovieBackgroundImage();
+    }else{
+      setGameBackgroundImage();
+    }
+    initializeRoundaboutClick(type);
+  });
+
+  // On click, set the background image to the image in focus.
+  function initializeRoundaboutClick(type){
+    $('.roundabout-image').click(function(){
+      if(type=='movie'){
+        setMovieBackgroundImage();
+      }else{
+        setGameBackgroundImage();
+      }
+    });
+  }
+
+  function setBackgroundImage(type){
+    var frontImage = $('.roundabout-in-focus img');
+    if(type == 'game'){
+      var url = frontImage.attr('src').replace('thumb','original');
+    }else if(type == 'movie'){
+      var url = frontImage.data('backdrop');
+    }
+  }
+
+  function setMovieBackgroundImage(){
+    setTimeout(function(){
+      var frontImage = $('.roundabout-in-focus img');
+      var url = frontImage.data('backdrop');
+      $('body').css('background-image', 'url('+url+')');
+      $('body').css('background-size', 'cover');
+      $('body').css('background-repeat', 'no-repeat');
+      $('#game-movie-music-title').html(frontImage.data('title'));
+    }, 1000);
+  }
+
+  function setGameBackgroundImage(){
+    setTimeout(function(){
+      var frontImage = $('.roundabout-in-focus img');
+      var url = frontImage.attr('src').replace('thumb','original');
+      $('body').css('background-image', 'url('+url+')');
+      $('body').css('background-size', 'cover');
+      $('body').css('background-repeat', 'no-repeat');
+      $('#game-movie-music-title').html(frontImage.data('title'));
+    }, 1000);
+  }
+</script>
+
+
+
+
+
+
 <script>
-$( function() { 
-    var slideshowRunning = false,
-    backgroundList = [];
+// $( function() { 
+//     var slideshowRunning = false,
+//     backgroundList = [];
 
-    // Build the background list with href of links
-    $( '#menu a' ).each( function() { 
-        backgroundList.push( { 
-            src: $( this ).attr( 'href' ),
-            valign: $( this ).data( 'valign' ),
-      fade: 3000
-         } );
-     } );
+//     // Build the background list with href of links
+//     $( '#menu a' ).each( function() { 
+//         backgroundList.push( { 
+//             src: $( this ).attr( 'href' ),
+//             valign: $( this ).data( 'valign' ),
+//       fade: 3000
+//          } );
+//      } );
     
-    // Define a slideshow with overlay and pause it
-  $.vegas( backgroundList[3] )
-  ( 'overlay', {
-    opacity: 0.5
-  })
-  ( 'pause' );
+//     // Define a slideshow with overlay and pause it
+//   $.vegas( backgroundList[3] )
+//   ( 'overlay', {
+//     opacity: 0.5
+//   })
+//   ( 'pause' );
 
-    // A short demo
-    $( '#menu a' ).click( function() { 
+//     // A short demo
+//     $( '#menu a' ).click( function() { 
   
-        // If the SlideShow link is clicked
-        if ( $( this ).is( '#slideshow' ) ) { 
+//         // If the SlideShow link is clicked
+//         if ( $( this ).is( '#slideshow' ) ) { 
     
-            // Start the SlideShow
-            if ( slideshowRunning == false ) { 
-                slideshowRunning = true;
+//             // Start the SlideShow
+//             if ( slideshowRunning == false ) { 
+//                 slideshowRunning = true;
         
-                $( '#pause' )
-          .show()
-          .css( 'opacity', 0.5 )
-          .html( 'PAUSE' );
+//                 $( '#pause' )
+//           .show()
+//           .css( 'opacity', 0.5 )
+//           .html( 'PAUSE' );
           
-        $.vegas( 'slideshow', { 
-          delay: 5000,
-          backgrounds: backgroundList,
-        })
+//         $.vegas( 'slideshow', { 
+//           delay: 5000,
+//           backgrounds: backgroundList,
+//         })
         
-            // Pause the SlideShow
-             } else { 
-                slideshowRunning = false;
+//             // Pause the SlideShow
+//              } else { 
+//                 slideshowRunning = false;
         
-                $( '#pause' )
-          .show()
-          .css( 'opacity', 0.5 )
-          .html( 'PLAY' );
+//                 $( '#pause' )
+//           .show()
+//           .css( 'opacity', 0.5 )
+//           .html( 'PLAY' );
           
-                $.vegas( 'pause' );  
-             }
+//                 $.vegas( 'pause' );  
+//              }
             
-        // If a standard Thumbnail is clicked
-         } else { 
-      slideshowRunning = false;
+//         // If a standard Thumbnail is clicked
+//          } else { 
+//       slideshowRunning = false;
       
-            $( '#pause' ).hide();
-      $( '#thumbnail' ).attr( 'src', 'images/slideshow.gif' );
+//             $( '#pause' ).hide();
+//       $( '#thumbnail' ).attr( 'src', 'images/slideshow.gif' );
 
-      var idx = $( this ).parent( 'li' ).index();
-      $.vegas( 'stop' )( backgroundList[idx] );
-         }
+//       var idx = $( this ).parent( 'li' ).index();
+//       $.vegas( 'stop' )( backgroundList[idx] );
+//          }
      
-         return false;
-     } );
+//          return false;
+//      } );
    
-  // Apply a border to the right thumbnail when a background is loaded
-  $( 'body' ).bind( 'vegasload', function( e, bg ) {      
-      var src = $( bg ).attr( 'src' ).replace( 'background', 'thumbnail' );
+//   // Apply a border to the right thumbnail when a background is loaded
+//   $( 'body' ).bind( 'vegasload', function( e, bg ) {      
+//       var src = $( bg ).attr( 'src' ).replace( 'background', 'thumbnail' );
     
-    $( '#menu img' )
-      .css( 'border', '1px solid #FFF' ); 
-    $( 'img[src="' + src + '"]' )
-      .css( 'border', '1px solid #CF0' );
-  });
+//     $( '#menu img' )
+//       .css( 'border', '1px solid #FFF' ); 
+//     $( 'img[src="' + src + '"]' )
+//       .css( 'border', '1px solid #CF0' );
+//   });
   
-  // Display the right thumbnail instead of the slideshow animated gif when the slideshow is running
-  $( 'body' ).bind( 'vegaswalk', function( e, bg ) {
-      var src = $( bg ).attr( 'src' ).replace( 'background', 'thumbnail' );
+//   // Display the right thumbnail instead of the slideshow animated gif when the slideshow is running
+//   $( 'body' ).bind( 'vegaswalk', function( e, bg ) {
+//       var src = $( bg ).attr( 'src' ).replace( 'background', 'thumbnail' );
     
-    $( '#thumbnail' ).attr( 'src', src );
-  });
- } );
+//     $( '#thumbnail' ).attr( 'src', src );
+//   });
+//  } );
 </script>
 
 
