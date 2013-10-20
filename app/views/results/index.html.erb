@@ -5,7 +5,11 @@
       <h1 id="game-movie-music-title"></h1>
       <ul class="roundabout-holder">
         <% @results.each do |movie| %>
-          <li><img data-title="<%= movie[:title] %>" class="roundabout-image" src="<%= @image + movie[:image] %>" /></li>
+          <% if movie[:backdrop] %>
+            <li><img data-title="<%= movie[:title] %>" data-backdrop="<%= @image + movie[:backdrop]%>" class="roundabout-image" src="<%= @image + movie[:image] %>" /></li>
+          <% else %>
+            <li><img data-title="<%= movie[:title] %>" data-backdrop="<%= @image + movie[:image]%>" class="roundabout-image" src="<%= @image + movie[:image] %>" /></li>
+          <% end %>
         <% end %>
       </ul>
     </section>
@@ -54,7 +58,7 @@
   function setBackgroundImage(){
     setTimeout(function(){
       var frontImage = $('.roundabout-in-focus img');
-      var url = frontImage.attr('src').replace('thumb','original');
+      var url = frontImage.data('backdrop');
       $('body').css('background-image', 'url('+url+')');
       $('body').css('background-size', 'cover');
       $('body').css('background-repeat', 'no-repeat');
