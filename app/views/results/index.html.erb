@@ -1,38 +1,38 @@
 <div id="containerResults">
    <ul id="menu">
   <% if @movies %>
-  <% @results.each do |movie| %>
-    <!--<h2><%= movie[:title] %></h2>-->
-    <li><img class="result" src="<%= @image + movie[:image] %>" style="width:150px;height:100px;" /></li>
-  <% end %>
-<% elsif @games %>
-    <img class="background" src="" />
     <section class="roundaboutcontainer">
-      <h1 id="game-title"></h1>
+      <h1 id="game-movie-music-title"></h1>
       <ul class="roundabout-holder">
-        <% @results.each do |game| %>
-          <% game[:images].each do |image| %>
-            <li><img data-title="<%= game[:title] %>" class="roundabout-image" src="<%= image %>"></li>
-          <% end %>
+        <% @results.each do |movie| %>
+          <li><img data-title="<%= movie[:title] %>" class="roundabout-image" src="<%= @image + movie[:image] %>" /></li>
         <% end %>
       </ul>
     </section>
-  <%# @results.each do |game| %>
-    <%# game[:images].take(4).each do |image| %>
-<!--       <li>
-        <a href="<%#= image %>" data-valign="top">
-         <img class="result" src="<%#= image %>" style="width:150px;height:100px;" />
-        </a>
-     </li> -->
-    <%# end %>
-  <%# end %>
+
+<% elsif @games %>
+  <section class="roundaboutcontainer">
+    <h1 id="game-movie-music-title"></h1>
+    <ul class="roundabout-holder">
+      <% @results.each do |game| %>
+        <% game[:images].each do |image| %>
+          <li><img data-title="<%= game[:title] %>" class="roundabout-image" src="<%= image %>"></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </section>
+
 <% elsif @music %>
-  <% @results.each do |song| %>
-  <!--<h2><%= song[:artist] %></h2>-->
-  <!--<h3><%= song[:collection] %></h3>-->
-    <li><img class="result" src="<%= song[:image] %>" style="width:150px;height:100px;" /></li>
-  <% end %>
-</ul>
+  <section class="roundaboutcontainer">
+    <h1 id="game-movie-music-title"></h1>
+    <ul class="roundabout-holder">
+      <% @results.each do |song| %>
+        <li><img data-title='<%= "#{song[:artist]}: #{song[:collection]}" %>' class="roundabout-image" src="<%= song[:image] %>" /></li>
+      <% end %>
+    </ul>
+  </section>
+
+
 <% end %>
  
 </div>
@@ -58,7 +58,7 @@
       $('body').css('background-image', 'url('+url+')');
       $('body').css('background-size', 'cover');
       $('body').css('background-repeat', 'no-repeat');
-      $('#game-title').html(frontImage.data('title'));
+      $('#game-movie-music-title').html(frontImage.data('title'));
     }, 1000);
   }
 </script>
