@@ -1,6 +1,7 @@
 <div id="containerResults">
    <ul id="menu">
-  <% if @movies %>
+<% if @movies %>
+    <div id="type" data-type="movie" style="display:hidden;"></div>
     <section class="roundaboutcontainer">
       <h1 id="game-movie-music-title"></h1>
       <ul class="roundabout-holder">
@@ -15,6 +16,7 @@
     </section>
 
 <% elsif @games %>
+  <div id="type" data-type="game" style="display:hidden;"></div>
   <section class="roundaboutcontainer">
     <h1 id="game-movie-music-title"></h1>
     <ul class="roundabout-holder">
@@ -27,6 +29,7 @@
   </section>
 
 <% elsif @music %>
+  <div id="type" data-type="music" style="display:hidden;"></div>
   <section class="roundaboutcontainer">
     <h1 id="game-movie-music-title"></h1>
     <ul class="roundabout-holder">
@@ -43,22 +46,51 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
+    var type = $('#type').data('type');
     $('.roundabout-holder').roundabout();
-    setBackgroundImage();
-    initializeRoundaboutClick();
+    if(type == 'movie'){
+      setMovieBackgroundImage();
+    }else{
+      setGameBackgroundImage();
+    }
+    initializeRoundaboutClick(type);
   });
 
   // On click, set the background image to the image in focus.
-  function initializeRoundaboutClick(){
+  function initializeRoundaboutClick(type){
     $('.roundabout-image').click(function(){
-      setBackgroundImage();
+      if(type=='movie'){
+        setMovieBackgroundImage();
+      }else{
+        setGameBackgroundImage();
+      }
     });
   }
 
-  function setBackgroundImage(){
+  function setBackgroundImage(type){
+    var frontImage = $('.roundabout-in-focus img');
+    if(type == 'game'){
+      var url = frontImage.attr('src').replace('thumb','original');
+    }else if(type == 'movie'){
+      var url = frontImage.data('backdrop');
+    }
+  }
+
+  function setMovieBackgroundImage(){
     setTimeout(function(){
       var frontImage = $('.roundabout-in-focus img');
       var url = frontImage.data('backdrop');
+      $('body').css('background-image', 'url('+url+')');
+      $('body').css('background-size', 'cover');
+      $('body').css('background-repeat', 'no-repeat');
+      $('#game-movie-music-title').html(frontImage.data('title'));
+    }, 1000);
+  }
+
+  function setGameBackgroundImage(){
+    setTimeout(function(){
+      var frontImage = $('.roundabout-in-focus img');
+      var url = frontImage.attr('src').replace('thumb','original');
       $('body').css('background-image', 'url('+url+')');
       $('body').css('background-size', 'cover');
       $('body').css('background-repeat', 'no-repeat');
