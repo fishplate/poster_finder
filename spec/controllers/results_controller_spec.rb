@@ -46,4 +46,28 @@ describe ResultsController do
       response.should be_redirect
     end
   end
+
+  context 'no entries found' do
+    before(:each) do
+      mock_response = double('MockResponse')
+      results = {images: {
+          base_url: 'http://someplace.com',
+          poster_sizes: [
+            'w185',
+            'original'
+          ]
+        },
+        results: []
+      }.to_json
+      mock_response.stub(:body).and_return(results)
+      HTTParty.stub(:get).and_return(mock_response)
+    end
+
+    it 'should redirect to root path with notice' do
+      get :index, search: 'star', submit_type: 'movie'
+      message = 'sorry, no images found for that query'
+      flash[:notice].should eq(message)
+      response.should be_redirect
+    end
+  end
 end
