@@ -14,3 +14,13 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+//Fading out flash messages.
+$(document).ready(function(){
+   setTimeout(function(){
+  $("div.alert").fadeOut("slow", function () {
+  $("div.alert").remove();
+      });
+
+}, 2000);
+ });
