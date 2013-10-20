@@ -2,8 +2,10 @@
    <ul id="menu">
 <% if @movies %>
     <div id="type" data-type="movie" style="display:hidden;"></div>
+
     <section class="roundaboutcontainer">
       <h1 id="game-movie-music-title"></h1>
+      <a href="/"><button style="padding:10px;"><< Back</button></a>
       <ul class="roundabout-holder">
         <% @results.each do |movie| %>
           <% if movie[:backdrop] %>
@@ -19,6 +21,7 @@
   <div id="type" data-type="game" style="display:hidden;"></div>
   <section class="roundaboutcontainer">
     <h1 id="game-movie-music-title"></h1>
+    <a href="/"><button style="padding:10px;"><< Back</button></a>
     <ul class="roundabout-holder">
       <% @results.each do |game| %>
         <% game[:images].each do |image| %>
@@ -32,6 +35,7 @@
   <div id="type" data-type="music" style="display:hidden;"></div>
   <section class="roundaboutcontainer">
     <h1 id="game-movie-music-title"></h1>
+    <a href="/"><button style="padding:10px;"><< Back</button></a>
     <ul class="roundabout-holder">
       <% @results.each do |song| %>
         <li><img data-title='<%= "#{song[:artist]}: #{song[:collection]}" %>' class="roundabout-image" src="<%= song[:image] %>" /></li>
