@@ -23,6 +23,7 @@ class ResultsController < ApplicationController
       results = movie_client.search_movie(query)
       @results = removed_nil_images(results)
       @image = conf[:base_url] + conf[:size]
+      check_for_nil_results(@results)
     else
       redirect_to root_path
     end
@@ -32,6 +33,7 @@ class ResultsController < ApplicationController
     if !query.empty?
       @games = true
       @results = game_client.display_images(query, 5)
+      check_for_nil_results(@results)
     else
       redirect_to root_path
     end
@@ -41,6 +43,7 @@ class ResultsController < ApplicationController
     if !query.empty?
       @music = true
       @results = music_client.music_search(query)
+      check_for_nil_results(@results)
     else
       redirect_to root_path
     end
@@ -62,5 +65,10 @@ class ResultsController < ApplicationController
 
   def removed_nil_images(results)
     results.delete_if {|x| x[:image].nil?}
+  end
+
+  def check_for_nil_results(results)
+    message = 'sorry, no images found for that query'
+    redirect_to root_path, notice: message if results.empty?
   end
 end
