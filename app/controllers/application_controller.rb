@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def movie_api_key
-    ENV['MOVIE_API_KEY'] || 'no_key'
+    API_CONFIG['movie_api_key'] || 'nokey'
   end
 
   def values_missing?(query_string, search_string)

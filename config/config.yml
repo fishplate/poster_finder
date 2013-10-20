@@ -1,0 +1,4 @@
+development:
+  movie_api_key: <%= ENV['MOVIE_API_KEY'] %>
+test:
+  movie_api_key: <%= ENV['MOVIE_API_KEY'] %>
